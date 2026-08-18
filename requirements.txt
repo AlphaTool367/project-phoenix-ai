@@ -1,0 +1,26 @@
+# Project Phoenix AI — backend dependencies
+fastapi>=0.110
+uvicorn[standard]>=0.29
+sqlalchemy>=2.0
+pydantic>=2.6
+pydantic-settings>=2.2
+httpx>=0.27
+edge-tts>=6.1.12
+apscheduler>=3.10.4
+psutil>=5.9
+pillow>=10.2
+mutagen>=1.46
+numpy>=1.26
+python-dotenv>=1.0
+python-multipart>=0.0.9
+websockets>=12.0
+
+# YouTube Data API / OAuth (optional at import time — needed only for uploads & analytics)
+google-api-python-client>=2.120
+google-auth-oauthlib>=1.2
+google-auth-httplib2>=0.2
+yt-dlp>=2024.1.0
+# Local speech-to-text for Remix; the model downloads on first use.
+faster-whisper>=1.1.0
+# Free Google Trends signal used by automatic topic research.
+pytrends>=4.9.2
