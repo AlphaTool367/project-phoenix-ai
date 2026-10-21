@@ -647,40 +647,28 @@ Required provider names are OPENROUTER_API_KEY, GEMINI_API_KEY, GROK_API_KEY, PE
 
 The complete English startup guide is in GITHUB_RUN_COMMANDS.md. The recommended single-port startup is cd project-phoenix-ai followed by ./run.sh in Git Bash or WSL. For the requested two-terminal developer mode, Terminal 1 runs the Python backend and Terminal 2 runs npm install plus npm run dev from the frontend directory. The exact command blocks are preserved in the guide.
 
-How to Run Project Phoenix AI on Windows
+### Phoenix dashboard with live provider status
 
-Backend
+The screenshot above shows the dashboard's masked OpenRouter, Gemini, and Grok/xAI status cards. Real .env and secrets/client_secret.json files must never be uploaded to GitHub. Keep .env in the project root and use python backend\\cli.py import-env C:\\path\\to\\your\\.env to merge a local environment file safely.
+iss ma only running ka liya ye add karo  PhantomX:
 
-Run the commands in PowerShell or CMD according to your project folder:
+**Backend — Terminal 1**
 
+```bat
 cd project-phoenix-ai
-
 python -m venv .venv
-
 .venv\Scripts\activate
-
 python -m pip install -r requirements.txt
-
 set PYTHONUTF8=1
-
 python backend/cli.py serve
+```
 
-Keep the backend running.
+**FRONTEND  ////#//#/#/#/#/#/#/#/#/#/**
 
-Frontend
-
-Open a new PowerShell/CMD window:
-
+```bat
 cd project-phoenix-ai
-
 .venv\Scripts\activate
-
 cd frontend
-
 npm install
-
 npm run dev
-
-Once the frontend starts, open the local URL displayed in the terminal in your browser.
-
-Note: If the virtual environment does not activate, use ".\.venv\Scripts\Activate.ps1" in PowerShell. If "npm install" has already been run, you usually do not need to run it again.
+```
