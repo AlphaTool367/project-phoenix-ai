@@ -1,4 +1,4 @@
-Project Phoenix AI (v1.4 — monetization phase 1)
+# Project Phoenix AI (v1.4 — monetization phase 1)
 
 An AI-powered YouTube management platform that researches trends, writes scripts,
 generates natural voiceovers, collects stock media, selects copyright-safe music,
@@ -17,12 +17,12 @@ opt-in, and the default live-only mode never presents invented YouTube numbers.
 
 ---
 
-What's new in v1.4 (Phase 1 monetization)
+## What's new in v1.4 (Phase 1 monetization)
 
 This release adds the 5 most-important features for getting your channel
 to the YouTube Partner Program (1,000 subs + 4,000 watch hours):
 
-New features
+### New features
 
 - Pre-upload copyright check (AcoustID) — fingerprints the rendered
   audio track and looks it up against AcoustID's 200M+ track database
@@ -58,7 +58,7 @@ New features
   triggered manually from the video card's "✂ clip Shorts" button. (See
   services/shorts_clipper.py.)
 
-New API keys (all free)
+### New API keys (all free)
 
 - ACOUSTID_API_KEY — https://acoustid.org/api
 - HUGGINGFACE_TOKEN — https://huggingface.co/settings/tokens
@@ -66,7 +66,7 @@ New API keys (all free)
 - REDDIT_CLIENT_ID, REDDIT_SECRET — https://www.reddit.com/prefs/apps
 - NEWS_API_KEY — https://newsapi.org/
 
-New endpoints
+### New endpoints
 
 - GET  /api/monetization/upload-times/{channel_id} — top 3 hours per weekday
 - GET  /api/monetization/upload-times/{channel_id}/next — single best next hour
@@ -78,7 +78,7 @@ New endpoints
 - GET  /api/videos/{video_id}/shorts — list Shorts clipped from a parent
 - POST /api/videos/{video_id}/clip-shorts — manually trigger Shorts clipping
 
-New DB columns on videos
+### New DB columns on videos
 
 - hook_score (int 0-100)
 - copyright_check_passed (bool), copyright_check_score (float), copyright_check_meta (JSON)
@@ -86,11 +86,11 @@ New DB columns on videos
 - parent_video_id (int, nullable — set on Shorts)
 - is_short (bool, indexed)
 
-New video statuses
+### New video statuses
 
 - short_ready — a Short has been clipped, awaiting upload decision
 
-Dashboard changes
+### Dashboard changes
 
 - Videos page now shows badges for hook score (🎣), predicted CTR (🎯),
   and copyright check (✓/⚠) on each video card.
@@ -102,7 +102,7 @@ Dashboard changes
 
 ---
 
-What's new in v1.3
+## What's new in v1.3
 
 This release adds the most-requested production features: length modes for
 Shorts vs Long videos, a YouTube realtime monitor that learns from
@@ -110,7 +110,7 @@ top-performing videos, automated copyright-check + auto-publish flow,
 cinematic video editing, Urdu voice fix, and a much more powerful
 scheduler.
 
-Bug fixes (v1.3)
+### Bug fixes (v1.3)
 
 - Urdu speaking/writing unclear — Edge-TTS was receiving raw Urdu text
   with diacritics, Arabic yeh at word ends, and tatweel that confused the
@@ -127,7 +127,7 @@ Bug fixes (v1.3)
   adds the new toggles (cinematic mode, copyright check, monitor
   settings, scheduler auto-trigger, etc.) to the same editable form.
 
-New features (v1.3)
+### New features (v1.3)
 
 - Video length modes — pick Shorts (random 30s–3min, portrait),
   Long (random 3–10min, landscape), or Manual (exact target seconds)
@@ -188,12 +188,12 @@ New features (v1.3)
 
 ---
 
-What's new in v1.2
+## What's new in v1.2
 
 This release fixes every bug reported in v1.1 and adds the most-requested
 features for the automated YouTube upload workflow.
 
-Bug fixes (v1.2)
+### Bug fixes (v1.2)
 
 - ass_path escaping in editor.py — the FFmpeg ass= filter used a path
   that broke on Windows (backslashes) and on paths containing apostrophes /
@@ -220,7 +220,7 @@ Bug fixes (v1.2)
   every video. Replaced with a clean styled end-card (solid pill + outline)
   that is OFF by default and toggleable from the Settings page or per-video.
 
-New features (v1.2)
+### New features (v1.2)
 
 - Editable Settings page — every relevant setting (channel name, niche,
   language, videos/day, target length, resolution, aspect, privacy, captions,
@@ -260,12 +260,12 @@ New features (v1.2)
 
 ---
 
-What's new in v1.1
+## What's new in v1.1
 
 This release fixes every bug reported in the v1.0 logs and adds the most-requested
 features for the automated YouTube upload workflow.
 
-Bug fixes
+### Bug fixes
 
 - [WinError 2] The system cannot find the file specified — the most
   critical crash, which killed every render at the voice stage. Root cause:
@@ -307,7 +307,7 @@ Bug fixes
   loads its own .env into the process environment before constructing
   Settings. (See backend/app/config.py.)
 
-New features
+### New features
 
 - Video size & aspect selector — pick 480p / 720p / 1080p / 1440p / 4k
   AND landscape (16:9) / square (1:1) / portrait (9:16) per production.
@@ -333,16 +333,17 @@ New features
 
 ---
 
-1. Requirements
+## 1. Requirements
 
-Tool	Version	Notes
+| Tool | Version | Notes |
+| --- | --- | --- |
 
-Python	3.10+	backend
-FFmpeg	5+	must be on PATH (ffmpeg -version to check). Optional in mock mode.
-Node.js	18+	dashboard only
+| Python | 3.10+ | backend |
+| FFmpeg | 5+ | must be on PATH (ffmpeg -version to check). Optional in mock mode. |
+| Node.js | 18+ | dashboard only |
 
 
-2. Quick start
+## 2. Quick start
 
 The recommended path is now a single command. It creates the Python environment,
 installs only changed dependencies, installs/builds the dashboard from the lockfile,
@@ -363,9 +364,9 @@ The demo may use generated/template content, but the normal analytics tracker is
 live-only by default. It does not invent views, subscribers, retention, or
 revenue metrics when YouTube data is unavailable.
 
-3. Connecting your accounts
+## 3. Connecting your accounts
 
-LLM keys (research / scripts / SEO)
+### LLM keys (research / scripts / SEO)
 
 Set at least one of OPENROUTER_API_KEY, GEMINI_API_KEY, or GROK_API_KEY in
 .env. Phoenix tries them in that order, retries transient failures with
@@ -384,17 +385,17 @@ Recommended configurable defaults:
 - Gemini: gemini-2.0-flash
 - Grok: grok-2-latest
 
-Pexels / Pixabay
+### Pexels / Pixabay
 
 Free keys: https://www.pexels.com/api/ and https://pixabay.com/api/docs/.
 Without them, Phoenix generates animated branded background clips locally.
 
-Jamendo (music)
+### Jamendo (music)
 
 Register a free developer app at https://devportal.jamendo.com/ → set
 JAMENDO_CLIENT_ID. Without it, Phoenix synthesizes neutral ambient beds locally.
 
-YouTube (OAuth)
+### YouTube (OAuth)
 
 1. Google Cloud Console → create a project → enable YouTube Data API v3 and
    YouTube Analytics API.
@@ -417,14 +418,15 @@ YouTube (OAuth)
    6 uploads/day (1,600 units each) — 3/day fits comfortably. Request a quota
    increase if you scale channels.
 
-Voice
+### Voice
 
 Edge-TTS needs no key. Change TTS_VOICE to any voice from
 edge-tts --list-voices (100+ locales, many styles). When Edge-TTS is
 unreachable, Phoenix falls back to ffmpeg synth, then to a pure-Python WAV.
 
-4. How the system fits together
+## 4. How the system fits together
 
+```
 ┌──────────────────────── DASHBOARD (React) ─────────────────────────┐  
             │  stats · queue · logs (WS) · analytics · scheduler · API health    │  
             │  per-video: resolution + aspect + length + topic picker            │  
@@ -448,6 +450,7 @@ unreachable, Phoenix falls back to ffmpeg synth, then to a pure-Python WAV.
    │                         ├─ analytics → views/retention/CTR/subscribers      │  
    │                         └─ learning → strategy weights fed back upstream    │  
    └─────────────────────────────────────────────────────────────────────────────┘
+```
 
 The self-learning loop
 
@@ -457,7 +460,7 @@ against the channel baseline, rewards winners and penalizes losers in the
 StrategyProfile table, and that profile steers the next day's research,
 script prompts and schedule. Insights are visible in the dashboard.
 
-5. Operating it
+## 5. Operating it
 
 python backend/cli.py serve          # API + scheduler daemon (run 24/7)  
 python backend/cli.py run-once       # produce & upload one video now  
@@ -471,7 +474,7 @@ channel's optimized publish hours, syncs analytics every 6 h, and updates the
 learning profile nightly. On boot, interrupted renders/uploads are detected and
 re-queued automatically. Every job retries with exponential backoff.
 
-Per-video overrides (new)
+### Per-video overrides (new)
 
 The dashboard Produce a video form now exposes:
 
@@ -482,7 +485,7 @@ The dashboard Produce a video form now exposes:
 
 These are passed to the API and override the .env defaults for that one video.
 
-6. Safety & platform-compliance notes (read once)
+## 6. Safety & platform-compliance notes (read once)
 
 Tracking truthfulness: ALLOW_SIMULATED_METRICS=false is the default. Set it to
 true only for an explicit demo or test run; the dashboard labels those snapshots
@@ -499,7 +502,7 @@ intend to read or upload against a real channel.
   royalty-free catalog are safe defaults; the VIDEO_PRIVACY staging flow keeps
   you in control.
 
-7. Project layout
+## 7. Project layout
 
 backend/app/  
   config.py           settings (env-driven, mock auto-detection, resolution/aspect)  
@@ -517,7 +520,7 @@ secrets/              client_secret.json (YouTube OAuth)
 .env / .env.example   configuration  
 run.sh                one-shot launcher (cross-platform)
 
-8. Extending it
+## 8. Extending it
 
 - New LLM provider → add a branch in services/llm.py (OpenAI-compatible shape).
 - New stock source → implement search_videos() in services/media.py style.
@@ -526,7 +529,7 @@ run.sh                one-shot launcher (cross-platform)
 - Multi-channel → create channels in the dashboard; every channel has independent
   schedule, strategy profile, analytics and token.
 
-Production Safety Pack
+### Production Safety Pack
 
 The Safety Center is available at /safety and provides a human approval queue, a 31-day content calendar view, a durable error center, safe database backups, restore confirmation, notification logs, and honest local quota accounting. When APPROVAL_REQUIRED=true and live YouTube publishing is enabled, a rendered video is held at awaiting_review until a reviewer approves it from the Safety Center. Dry-run mode remains available for safe testing.
 
@@ -542,19 +545,19 @@ Safety Pack regression checks can be run with:
 
 python backend/test_safety_pack.py
 
-Full Section Quality Audit
+### Full Section Quality Audit
 
 The latest audit covers every dashboard page and the long-form, Shorts, Cartoon, AI Story, Remix, Safety, Scheduler, Analytics, Monitor, Channels, Logs, and Settings workflows. The audit added backend/test_media_sections.py for real 9:16 MP4 validation, deterministic AI Story FFmpeg assembly, target-duration word scaling, metadata fallback, and the special-flow approval gate. backend/test_all_sections.py checks all direct SPA pages and core APIs, including honest Remix behavior when Whisper is unavailable.
 
 The current code does not claim live provider behavior without credentials. YouTube remains dry-run until OAuth is connected; analytics remain live-only; AI falls back to labelled templates when no provider is configured; and Remix requires Whisper or faster-Whisper for transcript extraction. Historical failed jobs and older short-duration videos remain visible as historical records rather than being silently rewritten.
 
-Premium Glass Studio UI and Upload Policy Modes
+### Premium Glass Studio UI and Upload Policy Modes
 
 The dashboard now uses a custom dark glassmorphism system inspired by the supplied visual direction: black-to-plum canvas, pink/lilac/violet ambient lighting, translucent frosted cards, luminous borders, pill badges, animated buttons, focus states, and reduced-motion support. The reference was used only as visual direction; Phoenix retains its own navigation, workflow labels, and YouTube-specific functionality.
 
 Settings now exposes two explicit live publish modes through the Production Safety Pack card. Manual approval keeps rendered videos in Safety Center until the user approves them. Automatic safe upload skips the human review step but still respects dry-run, OAuth availability, copyright checks, privacy settings, provider limits, and YouTube safety constraints. The current mode is also shown in the Videos form and Safety Center so the behavior is never ambiguous.
 
-9. Runtime folders and private files
+## 9. Runtime folders and private files
 
 The distribution keeps the runtime folders visible even before the first video is created. The important paths are data/uploads/ for browser-uploaded source videos, data/cartoons/ for Cartoon download staging, data/output/ for final MP4 files and per-job working folders, data/media/ for reusable media, data/music/ for background music, data/thumbnails/ for thumbnails, data/logs/ for application logs, data/backups/ for Safety Pack snapshots, and data/tokens/ for private YouTube OAuth tokens. These directories contain .gitkeep markers; generated contents remain ignored.
 
@@ -568,7 +571,7 @@ The launcher creates missing runtime folders automatically on every start:
 
 It also creates .env from .env.example when needed, checks FFmpeg, faster-whisper, yt-dlp and fpcalc, preserves the one-port API/dashboard startup, and exits cleanly when Phoenix is already running.
 
-10. Complete API and Google OAuth setup guide
+## 10. Complete API and Google OAuth setup guide
 
 Roman Urdu mein complete setup instructions alag file mein di gayi hain:
 
@@ -580,7 +583,7 @@ Is guide mein Google Cloud project، YouTube Data API v3، YouTube Analytics API
 
 Core setup ke liye pehle Google OAuth + YouTube Data/Analytics APIs، phir OpenRouter configure karein۔ Gemini aur Grok fallback providers hain؛ Pexels، Pixabay aur Jamendo useful optional services hain۔ Amazon، Reddit، NewsAPI اور doosri integrations ko initial setup mein blank chhora ja sakta hai۔
 
-Long-video quality and Urdu voice
+### Long-video quality and Urdu voice
 
 Long-form videos ab final MP4 artifact ko ffprobe se measure karte hain۔ Requested VIDEO_TARGET_SECONDS ke against measured duration compare hoti hai؛ default allowed difference max(3 seconds, 8%) hai۔ Agar video is range se chhoti ya zyada ho to pipeline misleading success nahi dikhati، balkay clear duration-verification error log karti hai۔
 
@@ -592,15 +595,15 @@ python backend/test_long_video_quality.py
 
 Is test mein final MP4 duration، Urdu voice mapping، Urdu text normalization، purpose metadata aur long-form script scaling verify hote hain۔
 
-Automatic workflow mode
+### Automatic workflow mode
 
 Fresh installations ab automatic safe-upload mode se start hoti hain: APPROVAL_REQUIRED=false۔ Is mode mein script، voice، media، duration verification، metadata، thumbnail، copyright check، scheduler aur upload pipeline khud chalti hai۔ Manual approval sirf tab enable karein jab Safety Center mein review karna ho۔
 
 Automatic mode ka matlab unsafe blind upload nahi hai۔ OAuth missing ho، YOUTUBE_DRY_RUN=true ho، final artifact missing/corrupt ho، final duration tolerance se bahar ho، copyright/policy check fail ho، provider quota/rate limit active ho، ya upload API error de، to system publish rokta hai، error/audit record save karta hai اور retry/resume ya notification path use karta hai۔ Real YouTube publishing ke liye OAuth complete karke hi YOUTUBE_DRY_RUN=false set karein۔
 
-New automatic research, usage and long-video verification
+### New automatic research, usage and long-video verification
 
-Real 10–20 minute long-video verification
+### Real 10–20 minute long-video verification
 
 The explicit verifier never uploads. It produces a real long-form artifact, measures the final MP4 with ffprobe, checks video/audio streams, checks the duration tolerance, checks purpose/takeaway metadata and prints a JSON quality report. It intentionally consumes real CPU, disk and configured provider requests, so it is not run automatically on every startup.
 
@@ -608,7 +611,7 @@ python backend/cli.py verify-long --seconds 600 --topic "Your detailed topic"
 
 Use --seconds 1200 for a 20-minute verification. Valid values are 600–1200 seconds. Exit code 0 means the final artifact passed; exit code 2 means the quality gate blocked it. The command always uses publish=False.
 
-Automatic topic research
+### Automatic topic research
 
 The Monitor page now has Automatic topic research. The backend prefers available real signals from Google Trends, public Reddit trend reads, optional NewsAPI and a connected YouTube channel. Every topic carries source, data_quality and score_basis. If no live source is available, the response is explicitly marked template_fallback_not_live_trend; it is never displayed as real trend data.
 
@@ -619,7 +622,7 @@ GET  /api/monitor/research/latest/{channel_id}
 
 Google Trends support uses pytrends; run ./run.sh after extracting the package so the dependency is installed. Google Trends or Reddit rate limits can still make a source unavailable, in which case the truthful labelled fallback remains active.
 
-Actual provider usage and cost reporting
+### Actual provider usage and cost reporting
 
 The Safety Center now records provider response metadata for OpenRouter, Gemini and Grok. It stores request count, prompt/completion/total tokens and cost only when the provider response reports a cost. Provider balances are always shown as unknown unless an official provider balance endpoint is queried; Phoenix never estimates a price or invents remaining credits.
 
@@ -627,7 +630,7 @@ GET /api/safety/provider-usage?days=1
 
 The dashboard distinguishes local YouTube quota accounting, provider-reported cost and unknown provider balance. No configured API key means no provider request usage is recorded.
 
-Safe API-key import and missing-key diagnosis
+### Safe API-key import and missing-key diagnosis
 
 Phoenix reads provider credentials from the project-root .env file beside run.sh, not from frontend/.env or .env.example. The dashboard deliberately shows not configured/mock when the backend process receives an empty value. Raw keys are never printed.
 
@@ -640,11 +643,11 @@ The command imports only non-empty settings, requires at least one non-empty pro
 
 Required provider names are OPENROUTER_API_KEY, GEMINI_API_KEY, GROK_API_KEY, PEXELS_API_KEY, PIXABAY_API_KEY and JAMENDO_CLIENT_ID. After changing .env, restart the backend; a running process does not automatically reload credentials.
 
-GitHub clone and Windows startup
+### GitHub clone and Windows startup
 
 The complete English startup guide is in GITHUB_RUN_COMMANDS.md. The recommended single-port startup is cd project-phoenix-ai followed by ./run.sh in Git Bash or WSL. For the requested two-terminal developer mode, Terminal 1 runs the Python backend and Terminal 2 runs npm install plus npm run dev from the frontend directory. The exact command blocks are preserved in the guide.
 
-Phoenix dashboard with live provider status
+### Phoenix dashboard with live provider status
 
 The screenshot above shows the dashboard's masked OpenRouter, Gemini, and Grok/xAI status cards. Real .env and secrets/client_secret.json files must never be uploaded to GitHub. Keep .env in the project root and use python backend\\cli.py import-env C:\\path\\to\\your\\.env to merge a local environment file safely.
 iss ma only running ka liya ye add karo  PhantomX:
@@ -671,37 +674,3 @@ cd frontend
 npm install
 
 npm run dev
-
----
-
-## PhantomX — Run only
-
-### Backend
-
-```bat
-cd project-phoenix-ai
-
-python -m venv .venv
-
-.venv\Scripts\activate
-
-python -m pip install -r requirements.txt
-
-set PYTHONUTF8=1
-
-python backend/cli.py serve
-```
-
-### Frontend (open a second terminal)
-
-```bat
-cd project-phoenix-ai
-
-.venv\Scripts\activate
-
-cd frontend
-
-npm install
-
-npm run dev
-```
