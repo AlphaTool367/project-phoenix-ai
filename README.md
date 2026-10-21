@@ -647,10 +647,20 @@ Required provider names are OPENROUTER_API_KEY, GEMINI_API_KEY, GROK_API_KEY, PE
 
 The complete English startup guide is in GITHUB_RUN_COMMANDS.md. The recommended single-port startup is cd project-phoenix-ai followed by ./run.sh in Git Bash or WSL. For the requested two-terminal developer mode, Terminal 1 runs the Python backend and Terminal 2 runs npm install plus npm run dev from the frontend directory. The exact command blocks are preserved in the guide.
 
-### Phoenix dashboard with live provider status
+Phoenix Dashboard with Live Provider Status
 
-The screenshot above shows the dashboard's masked OpenRouter, Gemini, and Grok/xAI status cards. Real .env and secrets/client_secret.json files must never be uploaded to GitHub. Keep .env in the project root and use python backend\\cli.py import-env C:\\path\\to\\your\\.env to merge a local environment file safely.
-iss ma only running ka liya ye add karo  PhantomX:
+The dashboard displays masked API provider status cards for OpenRouter, Gemini, and Grok/xAI.
+
+Security Notice: Never upload your real ".env" or "secrets/client_secret.json" files to GitHub. Keep ".env" in the project root. To safely import local environment variables, use:
+
+python backend/cli.py import-env C:\path\to\your\.env
+
+PhantomX — Windows Running Commands
+
+1. Backend
+
+Run the following commands one by one in CMD:
+
 cd project-phoenix-ai
 
 python -m venv .venv
@@ -663,7 +673,13 @@ set PYTHONUTF8=1
 
 python backend/cli.py serve
 
-FRONTEND  ////#//#/#/#/#/#/#/#/#/#/
+Keep the backend terminal running.
+
+---
+
+2. Frontend
+
+Open a new CMD window and run these commands one by one:
 
 cd project-phoenix-ai
 
@@ -674,3 +690,9 @@ cd frontend
 npm install
 
 npm run dev
+
+3. Open the Dashboard
+
+After the frontend starts, copy the local URL displayed in the terminal and open it in your browser.
+
+Important: Keep both terminal windows open while using the dashboard.
