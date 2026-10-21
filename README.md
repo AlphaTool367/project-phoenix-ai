@@ -647,10 +647,12 @@ Required provider names are OPENROUTER_API_KEY, GEMINI_API_KEY, GROK_API_KEY, PE
 
 The complete English startup guide is in GITHUB_RUN_COMMANDS.md. The recommended single-port startup is cd project-phoenix-ai followed by ./run.sh in Git Bash or WSL. For the requested two-terminal developer mode, Terminal 1 runs the Python backend and Terminal 2 runs npm install plus npm run dev from the frontend directory. The exact command blocks are preserved in the guide.
 
-### Phoenix dashboard with live provider status
+How to Run Project Phoenix AI on Windows
 
-The screenshot above shows the dashboard's masked OpenRouter, Gemini, and Grok/xAI status cards. Real .env and secrets/client_secret.json files must never be uploaded to GitHub. Keep .env in the project root and use python backend\\cli.py import-env C:\\path\\to\\your\\.env to merge a local environment file safely.
-iss ma only running ka liya ye add karo  PhantomX:
+Backend Setup
+
+Open PowerShell or CMD and run the following commands from your project directory:
+
 cd project-phoenix-ai
 
 python -m venv .venv
@@ -663,7 +665,11 @@ set PYTHONUTF8=1
 
 python backend/cli.py serve
 
-FRONTEND  ////#//#/#/#/#/#/#/#/#/#/
+Important: Keep the backend terminal window open while the application is running.
+
+Frontend Setup
+
+Open a new PowerShell or CMD window and run:
 
 cd project-phoenix-ai
 
@@ -674,3 +680,17 @@ cd frontend
 npm install
 
 npm run dev
+
+Once the frontend starts, the terminal will display a local URL. Open that URL in your web browser to access Project Phoenix AI.
+
+Important Notes
+
+- PowerShell activation: If the virtual environment does not activate, use the following command instead:
+  
+  .\.venv\Scripts\Activate.ps1
+
+- Node.js and npm: Make sure Node.js and npm are installed on your Windows system.
+
+- Existing dependencies: If you have already run "npm install", you usually do not need to run it again unless your dependencies have changed.
+
+- Keep both terminals open: The backend and frontend must remain running while you use the application.
